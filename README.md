@@ -1,3 +1,2 @@
 # node.js practice
- a project to review node.js
- still working on it
+ A project to review node.js and still working on it.
