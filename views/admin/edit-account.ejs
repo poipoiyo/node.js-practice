@@ -1,0 +1,84 @@
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/forms.css">
+    <link rel="stylesheet" href="/css/product.css">
+</head>
+
+<body>
+   <%- include('../includes/navigation.ejs') %>
+
+    <main>
+		<% if (errorMessage) { %>
+			<div class="user-message user-message--error"><%= errorMessage %></div>
+        <% } %>
+        <form class="product-form" action="/admin/<% if (editing || hasError) { %>edit-account<% } else { %>add-account<% } %>" method="POST">
+            <div class="form-control">
+                <label for="title">Title</label>
+                <input
+					class="<%= validationErrors.find(e => e.param === 'title') ? 'invalid' : '' %>"				
+					type="text" 
+					name="title" 
+					id="title" 
+					value="<% if (editing || hasError) { %><%= account.title %><% } %>">
+            </div>
+			
+			<div class="">
+				
+                <input 
+					class="<%#= validationErrors.find(e => e.param === 'in_outcome') ? 'invalid' : '' %>"
+					type="radio" 
+					name="in_outcome" 
+					id="income"
+					value="income"
+					<% if ((editing || hasError) && (account.in_outcome === 'income')) { %>
+						checked="true"
+					<% } %>
+					>Income</Input>
+				&emsp;&emsp;&emsp;&emsp;
+                <input 
+					class="<%#= validationErrors.find(e => e.param === 'in_outcome') ? 'invalid' : '' %>"
+					type="radio" 
+					name="in_outcome" 
+					id="outcome"
+					value="outcome"
+					<% if ((editing || hasError) && (account.in_outcome === 'outcome')) { %>
+						checked="true"
+					<% } %>
+					>Outcome</Input>
+            </div>
+			
+			<div class="form-control">
+                <label for="price">Price</label>
+                <input 
+					class="<%= validationErrors.find(e => e.param === 'price') ? 'invalid' : '' %>"
+					type="number" 
+					name="price" 
+					id="price" 
+					step="5" 
+					value="<% if (editing || hasError) { %><%= account.price %><% } %>">
+            </div>
+			<div class="form-control">
+                <label for="time">Date</label>
+                <input 
+					class="<%= validationErrors.find(e => e.param === 'time') ? 'invalid' : '' %>"
+					type="date" 
+					name="time" 
+					id="time" 
+					value="<% if (editing || hasError) { %><%= account.time %><% } %>">
+            </div>
+			<div class="form-control">
+                <label for="detail">Detail</label>
+                <textarea 
+					class="<%= validationErrors.find(e => e.param === 'detail') ? 'invalid' : '' %>" 
+					name="detail" 
+					id="detail" 
+					value="<% if (editing || hasError) { %><%= account.detail %><% } %>"></textarea>
+            </div>
+			
+			<% if (editing) { %>
+                <input type="hidden" value="<%= account._id %>" name="accountId">
+            <% } %>
+			<input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <button class="btn" type="submit"><% if (editing) { %>Update Account<% } else { %>Add Account<% } %></button>
+        </form>
+    </main>
+<%- include('../includes/end.ejs') %>

@@ -1,0 +1,74 @@
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/orders.css">
+</head>
+
+<body>
+    <%- include('../includes/navigation.ejs') %>
+
+    <main>
+        <% if (accous.length <= 0) { %>
+                <h1>Nothing here</h1>
+            <% } else { %>
+			
+                <ul class="orders">
+					<% for (var d in dateSum) { %>
+						<%= d %> &emsp; total
+						<%= (dateSum[d]<0) ? ' cost' : ' earn' %>: $ 
+						<%= (dateSum[d]<0) ? dateSum[d]*-1 : dateSum[d] %>
+						<p>
+						
+					
+                    <% accous.forEach(account => { if (account.time == d) {%>
+						<article>
+                        <li class="orders__item">
+                            <ul class="orders__products">
+                                <li class="">		
+									<div class="card__actions">
+											
+										<%= account.title %>
+										&emsp;&emsp;&emsp;&emsp;
+										<% if (account.in_outcome == 'outcome' ) { %> 
+											<font color="red">cost: $<%= account.price %></font> 
+										<% } else { %>
+											earn: $<%= account.price %>
+										<% } %>
+										&emsp;&emsp;&emsp;&emsp;
+										<%= account.detail %>
+										&emsp;&emsp;&emsp;&emsp;
+										
+										<a href="/admin/edit-account/<%= account._id %>?edit=true" class="btn" >Edit</a>
+										<input type="hidden" name="name" value="<%= name %>">
+										<input type="hidden" name="accountId" value="<%= account._id %>" >
+										<input type="hidden" name="_csrf" value="<%= csrfToken %>">
+										<button class="btn" type="button" onclick="deleteAccount(this)">Delete</button>
+									
+									</div>
+								</li>
+                            </ul>
+                        </li>
+					</article>
+                    <% }}); %>
+				<% } %>	
+                </ul>
+				<section class="pagination">
+				<% if (currentPage !== 1 && previousPage !== 1) { %>
+					<a href="/?page=1">1</a>
+				<% } %>
+				
+				<% if (hasPreviousPage) { %>
+					<a href="/?page=<%= perviousPage %>"><%= perviousPage %></a>
+				<% } %>
+				
+				<a href="/?page=<%= currentPage %>" class="active"><%= currentPage %></a>
+				
+				<% if (hasNextPage) { %>
+					<a href="/?page=<%= nextPage %>"><%= nextPage %></a>
+				<% } %>
+				<% if (lastPage !== currentPage && nextPage !== lastPage) { %>
+					<a href="/?page=<%= lastPage %>"><%= lastPage %></a>
+				<% } %>
+				</section>
+            <% } %>
+    </main>
+<%- include('../includes/end.ejs') %>
+<script src="/js/admin.js"></script>
