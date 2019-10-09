@@ -17,7 +17,7 @@ const adminRoutes = require('./routes/admin');
 const authRoutes = require('./routes/auth');
 
 // Mongo Database connection URI 
-const MONGODB_URI = 'mongodb+srv://<username>:<password>@cluster0-qnhak.mongodb.net/<>';
+const MONGODB_URI = '';
 
 const store = new MongoDBStore({
   uri: MONGODB_URI,
