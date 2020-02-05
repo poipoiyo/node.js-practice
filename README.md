@@ -32,7 +32,7 @@ Instead of showing how to use it, it's mainly a record what I learned and the to
 
 ----------
 
-- Users are allowed to create user account and log in.
+- Users are allowed to create user account and log in. Some demo images are also aviable here.
   
 - Once logged in, users can record a new account and all of them will show in the same page.  
 
