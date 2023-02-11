@@ -72,7 +72,7 @@ Alternatively, Create a file **nodemon.json** with content `{"env":{"MONGO_USER"
 ## 3rd Party Packages
 Some of them aren't in this project, just list for recording.
 
-- **express**  
+### 1. express
 A powerful Node.js framework, helps middleware, request(req), response(res), routing and data management. 
 
 As server gets a req, it handles with middleware and return a res. 
@@ -81,17 +81,17 @@ Such as, `(req, res, next) => { ... }`.
 
 There are still various extension for express, and some alternatives to express. 
 
-- **mongoose**  
+### 2. mongoose
 A Mongodb ORM, helps to simplify code to interact with Mongodb.
 
 Such as `Account.save().then({ ... }).catch({ ... });`, and `Account.findById(accouId).then({ ... }).catch({ ... });`.
 
-- **bcrypt js**  
+### 3. bcrypt js
 To avoid developers from knowing every users' password directly.
 
 `bcrypt.hash( password, 12 ).then( hashedPassword => { const user = new User({ name: name , password: hashedPassword }); return user.save(); })`
 
-- **csurf**  
+### 4. csurf
 To avoid server from csrf attack. Every request creates a token. 
 
 With correct token, the web page shows correctly.
@@ -100,43 +100,43 @@ With correct token, the web page shows correctly.
 
 `<input type="hidden" name="_csrf" value="<%= csrfToken %>">`	
 
-- **express-session**  
+### 5. express-session
 Developers can save everything in sessions. 
 
 In this project, sessions are stored by user data(authentication status). 
 
 Server can always check if it's allowed to view this web page.
 
-- **nodemailer**  
+### 6. nodemailer
 It provides server to send emails automatically. 
 
 If users forget their password, server can send them a new password.
 
-- **validator**  
+### 7. validator
 Once user submits any information, server wants to check if they are valid or not. 
 
 Validator provides some commands to restrict the data whic was sent by users.
 
 For example, `body('title').isString().isAlphanumeric().trim()`  
 	
-- **multer**  
+### 8. multer
 User can upload images which will save in the specific folder, and can also be deleted.
 
-- **pdfkit**  
+### 9. pdfkit
 Provides users to download information as pdf. 
 
 Developers can design the context and the format.
 
-- **stripe**  
+### 10. stripe
 It provides users to pay in a secret way with credit card.
 
-- **helmet**  
+### 11. helmet
 It's also a protection for express.
 
-- **compression**  
+### 12. compression
 It decearses the size of the files while tranfering througth internet and accelerates the rate of loading web page.
 
-# SSL
+### 13. SSL
 Run command `openssl req -nodes -new -x509 -keyout server.key -out server.cert` 
 
 There will be two new files, `server.cert` and `server.key`.
@@ -151,7 +151,7 @@ At **app.js**,
 
 The URL starts with https, and the website is protected by SSL.
 
-# Heroku
+### 14. Heroku
 A service to deploy website.
 
 Push new commit to Heroku by running following commands:
